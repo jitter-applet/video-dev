@@ -1,0 +1,21 @@
+package cn.zzuisa.controller;
+
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import cn.zzuisa.pojo.Users;
+import cn.zzuisa.utils.R;
+
+@RestController
+public class RegistLoginController {
+
+	@PostMapping("/regist")
+	public R regist(@RequestBody Users users) {
+		// 1. 判断用户名和密码必须不为空
+		// 2. 判断用户名是否存在
+		// 3. 保存用户注册信息
+		return R.ok();
+	}
+
+}

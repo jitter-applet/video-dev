@@ -1,0 +1,28 @@
+package cn.zzuisa.service;
+
+import cn.zzuisa.pojo.Users;
+
+/**
+ * 
+ * @ClassName: UserService
+ * @Description: TODO
+ * @author Ao
+ * @date Nov 18, 2018
+ * 
+ */
+public interface UserService {
+	/**
+	 * 判断用户名是否存在
+	 * 
+	 * @param username
+	 * @return
+	 */
+	public boolean queryUsernameIsExist(String username);
+
+	/**
+	 * 保存用户(用户注册)
+	 * 
+	 * @param user
+	 */
+	public void saveUser(Users user);
+}

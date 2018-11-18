@@ -1,0 +1,18 @@
+/**
+ * 
+ */
+package cn.zzuisa.service;
+
+import cn.zzuisa.pojo.Users;
+
+/**
+ * @ClassName: UserServiceImpl
+ * @Description: TODO
+ * @author Ao
+ * @date Nov 18, 2018
+ *
+ */
+public class UserServiceImpl implements UserService {
+
+
+}

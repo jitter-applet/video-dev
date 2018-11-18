@@ -1,0 +1,6 @@
+package cn.zzuisa.constant;
+
+public interface RCons {
+	String VALIDLOGIN = "用户名和密码不能为空";
+	String VALIDREGIST = "用户名和密码不能为空";
+}

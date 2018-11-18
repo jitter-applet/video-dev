@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<workingSetManager>
+<workingSet editPageId="org.eclipse.jdt.internal.ui.DynamicSourcesWorkingSet" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1542512863976_0" label="Java Main Sources" name="main">
+<item elementID="=mybatis-generatorConfig/src\/main\/java" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=mybatis-generatorConfig/src\/main\/resources" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=zzuisa-videos-dev-api/src\/main\/java" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=zzuisa-videos-dev-api/src\/main\/resources" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=zzuisa-videos-dev-common/src\/main\/java" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=zzuisa-videos-dev-common/src\/main\/resources" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=zzuisa-videos-dev-common/.apt_generated" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=zzuisa-videos-dev-mapper/src\/main\/java" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=zzuisa-videos-dev-mapper/src\/main\/resources" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=zzuisa-videos-dev-pojo/src\/main\/java" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=zzuisa-videos-dev-pojo/src\/main\/resources" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=zzuisa-videos-dev-service/src\/main\/java" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=zzuisa-videos-dev-service/src\/main\/resources" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+</workingSet>
+<workingSet editPageId="org.eclipse.jdt.internal.ui.DynamicSourcesWorkingSet" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1542512863991_1" label="Java Test Sources" name="test">
+<item elementID="=mybatis-generatorConfig/src\/test\/java" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=mybatis-generatorConfig/src\/test\/resources" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=zzuisa-videos-dev-api/src\/test\/java" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=zzuisa-videos-dev-api/src\/test\/resources" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=zzuisa-videos-dev-common/src\/test\/java" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=zzuisa-videos-dev-common/src\/test\/resources" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=zzuisa-videos-dev-common/.apt_generated_tests" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=zzuisa-videos-dev-mapper/src\/test\/java" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=zzuisa-videos-dev-mapper/src\/test\/resources" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=zzuisa-videos-dev-pojo/src\/test\/java" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=zzuisa-videos-dev-pojo/src\/test\/resources" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=zzuisa-videos-dev-service/src\/test\/java" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=zzuisa-videos-dev-service/src\/test\/resources" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+</workingSet>
+<workingSet editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1542512902064_3" label="videos" name="videos">
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/zzuisa-videos-dev-common" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/zzuisa-videos-dev-pojo" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/zzuisa-videos-dev-service" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/zzuisa-videos-dev" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/mybatis-generatorConfig" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/zzuisa-videos-dev-mapper" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/zzuisa-videos-dev-api" type="4"/>
+</workingSet>
+<workingSet aggregate="true" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1542512868122_2" label="Window Working Set" name="Aggregate for window 1542512868122"/>
+</workingSetManager>

@@ -1,0 +1,43 @@
+package cn.zzuisa.controller;
+
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import cn.zzuisa.constant.RCons;
+import cn.zzuisa.pojo.Users;
+import cn.zzuisa.service.UserService;
+import cn.zzuisa.utils.MD5Utils;
+import cn.zzuisa.utils.R;
+
+@RestController
+public class RegistLoginController {
+
+	@Autowired
+	private UserService userService;
+
+	@PostMapping("/regist")
+	public R regist(@RequestBody Users user) throws Exception {
+		// 1. 判断用户名和密码必须不为空
+		if (StringUtils.isBlank(user.getUsername()) || StringUtils.isBlank(user.getPassword())) {
+			return R.errorMsg(RCons.VALIDLOGIN);
+		}
+		// 2. 判断用户名是否存在
+		boolean usernameIsExist = userService.queryUsernameIsExist(user.getUsername());
+		// 3. 保存用户注册信息
+		if (!usernameIsExist) {
+			user.setNickname(user.getUsername());
+			user.setPassword(MD5Utils.getMD5Str(user.getPassword()));
+			user.setFansCounts(0);
+			user.setReceiveLikeCounts(0);
+			user.setFollowCounts(0);
+			userService.saveUser(user);
+		} else {
+			return R.errorMsg(RCons.USERHASEXIST);
+		}
+		return R.ok();
+	}
+
+}
