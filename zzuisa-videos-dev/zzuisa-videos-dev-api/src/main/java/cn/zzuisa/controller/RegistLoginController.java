@@ -50,7 +50,7 @@ public class RegistLoginController {
 	public R login(@RequestBody Users user) throws Exception {
 		String username = user.getUsername();
 		String password = user.getPassword();
-		// 判断用户名和密码不为空
+		// 判断用户名和密码不为空Ï
 		if (StringUtils.isBlank(username) || StringUtils.isBlank(password)) {
 			R.errorMsg(RCons.VALIDLOGIN);
 		}
