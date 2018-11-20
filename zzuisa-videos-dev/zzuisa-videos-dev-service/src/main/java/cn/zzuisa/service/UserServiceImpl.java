@@ -59,4 +59,24 @@ public class UserServiceImpl implements UserService {
 		return result;
 	}
 
+	@Override
+	public void updataUserInfo(Users user) {
+		// TODO Auto-generated method stub
+		Example userExample = new Example(Users.class);
+		Criteria criteria = userExample.createCriteria();
+		criteria.andEqualTo("id", user.getId());
+		userMapper.updateByExampleSelective(user, userExample); // 非空更新，否则不更新
+
+	}
+
+	@Transactional(propagation = Propagation.SUPPORTS)
+	@Override
+	public Users queryUserInfo(String userid) {
+		Example userExample = new Example(Users.class);
+		Criteria criteria = userExample.createCriteria();
+		criteria.andEqualTo("id", userid);
+		Users user = userMapper.selectOneByExample(userExample);
+		return user;
+	}
+
 }

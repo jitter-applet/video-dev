@@ -31,4 +31,14 @@ public interface UserService {
 	 */
 	public void saveUser(Users user);
 
+	/**
+	 * 用户修改信息
+	 */
+	public void updataUserInfo(Users user);
+
+	/**
+	 * 查询用户信息
+	 */
+	public Users queryUserInfo(String userid);
+
 }

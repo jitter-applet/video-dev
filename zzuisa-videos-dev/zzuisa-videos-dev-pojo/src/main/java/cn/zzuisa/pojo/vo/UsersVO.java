@@ -6,6 +6,8 @@ package cn.zzuisa.pojo.vo;
 import javax.persistence.Column;
 import javax.persistence.Id;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import io.swagger.annotations.ApiModelProperty;
 
 /**
@@ -36,6 +38,7 @@ public class UsersVO {
 	 * 密码
 	 */
 	@ApiModelProperty(value = "密码", name = "password", example = "string", required = true)
+	@JsonIgnore
 	private String password;
 
 	/**
