@@ -29,6 +29,7 @@ target/
 /test/reports
 /logs
 *.log
+*.log4j
 *.log.*
  
 # project release file
