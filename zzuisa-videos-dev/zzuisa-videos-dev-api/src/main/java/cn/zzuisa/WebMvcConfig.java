@@ -17,10 +17,12 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 @Configuration
 public class WebMvcConfig extends WebMvcConfigurerAdapter {
 
+	final String  MACPATH = "file:/Users/zzu/Desktop/videos/";
+	final String WINDOWSPATH = "file:D:/wx-videosResource/";
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 		// 配置虚拟路径
-		registry.addResourceHandler("/**").addResourceLocations("file:/Users/zzu/Desktop/videos/")
+		registry.addResourceHandler("/**").addResourceLocations(WINDOWSPATH)
 				.addResourceLocations("classpath:/META-INF/resources/");
 	}
 

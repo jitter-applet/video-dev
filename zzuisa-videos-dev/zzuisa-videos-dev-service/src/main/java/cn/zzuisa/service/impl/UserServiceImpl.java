@@ -1,7 +1,7 @@
 /**
  * 
  */
-package cn.zzuisa.service;
+package cn.zzuisa.service.impl;
 
 import org.n3r.idworker.Sid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import cn.zzuisa.mapper.UsersMapper;
 import cn.zzuisa.pojo.Users;
+import cn.zzuisa.service.UserService;
 import tk.mybatis.mapper.entity.Example;
 import tk.mybatis.mapper.entity.Example.Criteria;
 

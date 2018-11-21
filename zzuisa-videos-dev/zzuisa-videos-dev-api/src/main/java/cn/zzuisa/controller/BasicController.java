@@ -12,7 +12,11 @@ public class BasicController {
 	public RedisOperator redis;
 
 	public static final String USER_REDIS_SESSION = "user-redis-session";
-
+	
+	public static final String  MACPATH = "file:/Users/zzu/Desktop/videos/";
+	public static String WINDOWSPATH = "D:/wx-videosResource/";
+	public static final String  MACPATHOFVIDEO = "file:/Users/zzu/Desktop/videos/";
+	public static String WINDOWSPATHOFVIDEO = "D:/wx-videosResource/";
 	// 文件保存的命名空间
 	public static final String FILE_SPACE = "C:/imooc_videos_dev";
 
