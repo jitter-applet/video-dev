@@ -19,10 +19,14 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
 
 	final String  MACPATH = "file:/Users/zzu/Desktop/videos/";
 	final String WINDOWSPATH = "file:D:/wx-videosResource/";
+	final String WINDOWSFFMPEG_EXE = "E:\\ffmpeg\\bin\\ffmpeg.exe";
+	public static final String UBUNTUPATH = "file:/usr/wx-videos/";
+	public static final String UBUNTUPATHOFVIDEO = "file:/usr/wx-videos/";
+	public static final String UBUNTUFFMPEG = "ffmpeg";
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 		// 配置虚拟路径
-		registry.addResourceHandler("/**").addResourceLocations(WINDOWSPATH)
+		registry.addResourceHandler("/**").addResourceLocations(UBUNTUPATH)
 				.addResourceLocations("classpath:/META-INF/resources/");
 	}
 

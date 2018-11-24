@@ -48,7 +48,8 @@ public class UserController extends BasicController {
 				String fileName = files[0].getOriginalFilename();
 				if (StringUtils.isNotBlank(fileName)) {
 					// 文件上传的最终保存路径
-					String finalFacePath = WINDOWSPATH + uploadPathDB + "/" + fileName;
+//					String finalFacePath = WINDOWSPATH + uploadPathDB + "/" + fileName;
+					String finalFacePath = UBUNTUPATH + uploadPathDB + "/" + fileName;
 					// 设置数据库保存的路径
 					uploadPathDB += ("/" + fileName);
 					File outFile = new File(finalFacePath);
