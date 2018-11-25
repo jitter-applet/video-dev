@@ -1,5 +1,6 @@
 package cn.zzuisa.service.impl;
 
+import java.awt.image.RescaleOp;
 import java.util.List;
 
 import org.n3r.idworker.Sid;
@@ -11,8 +12,10 @@ import org.springframework.transaction.annotation.Transactional;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 
+import cn.zzuisa.mapper.SearchRecordsMapper;
+import cn.zzuisa.mapper.VideosCustomMapper;
 import cn.zzuisa.mapper.VideosMapper;
-import cn.zzuisa.mapper.custom.VideosCustomMapper;
+import cn.zzuisa.pojo.SearchRecords;
 import cn.zzuisa.pojo.Videos;
 import cn.zzuisa.pojo.vo.VideosVO;
 import cn.zzuisa.service.VideoService;
@@ -27,6 +30,8 @@ public class VideoServiceImpl implements VideoService {
 	private VideosMapper videosMapper;
 	@Autowired
 	private VideosCustomMapper videosCustomMapper;
+	@Autowired
+	private SearchRecordsMapper searchRecordsMapper;
 
 	@Transactional(propagation = Propagation.SUPPORTS)
 	@Override
@@ -48,18 +53,34 @@ public class VideoServiceImpl implements VideoService {
 		videosMapper.updateByPrimaryKeySelective(video);
 	}
 
+	@Transactional(propagation = Propagation.REQUIRED)
 	@Override
-	public PagedResult<VideosVO> getAllVideos(Integer page, Integer pageSize) {
+	public PagedResult<VideosVO> getAllVideos(Videos video, Integer isSaveRecord, Integer page, Integer pageSize) {
+		String desc = video.getVideoDesc();
+		//保存热搜词
+		if (desc != null && isSaveRecord == 1) {
+			SearchRecords record = new SearchRecords();
+			String recordId = sid.nextShort();
+			record.setId(recordId);
+			record.setContent(desc);
+			searchRecordsMapper.insert(record);
+		}
 		// TODO Auto-generated method stub
 		PageHelper.startPage(page, pageSize);
-		List<VideosVO> list = videosCustomMapper.queryAllVideos();
-		PageInfo<VideosVO> pageList = new PageInfo<>(list);
+		List<VideosVO> list = videosCustomMapper.queryAllVideos(desc);
+		PageInfo<VideosVO> pageList = new PageInfo<VideosVO>(list);
 		PagedResult<VideosVO> pageResult = new PagedResult<VideosVO>();
 		pageResult.setPage(page);
 		pageResult.setTotal(pageList.getPages());
 		pageResult.setRows(list);
 		pageResult.setRecords(pageList.getTotal());
 		return pageResult;
+	}
+
+	@Transactional(propagation = Propagation.SUPPORTS)
+	@Override
+	public List<String> getHotwords() {
+		return searchRecordsMapper.getHotwords();
 	}
 
 }

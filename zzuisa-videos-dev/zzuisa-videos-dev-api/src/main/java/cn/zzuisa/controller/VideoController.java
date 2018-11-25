@@ -10,6 +10,7 @@ import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
@@ -17,10 +18,12 @@ import org.springframework.web.multipart.MultipartFile;
 import cn.zzuisa.enums.VideoStatusEnum;
 import cn.zzuisa.pojo.Bgm;
 import cn.zzuisa.pojo.Videos;
+import cn.zzuisa.pojo.vo.VideosVO;
 import cn.zzuisa.service.BgmService;
 import cn.zzuisa.service.VideoService;
 import cn.zzuisa.utils.FetchVideoCover;
 import cn.zzuisa.utils.MergeVideoMp3;
+import cn.zzuisa.utils.PagedResult;
 import cn.zzuisa.utils.R;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
@@ -52,12 +55,16 @@ public class VideoController extends BasicController {
 		if (StringUtils.isBlank(userId)) {
 			return R.errorMsg("用户id不能为空");
 		}
-		// 文件保存的命名空间
+		// 文件保存的命名空间 缓存目录
 		String uploadPathDB = "/" + userId + "/cache";
+		// 文件目录
+		String uploadVideoPathDB = UBUNTUPATH + "/" + userId + "/video";
 		String coverPathDB = "/" + userId + "/videoCovers";
 		String finalVideoPath = "";
 		FileOutputStream fileOutputStream = null;
 		InputStream inputStream = null;
+		String RID = UUID.randomUUID().toString();
+		String videoOutputName = RID + ".mp4";
 		try {
 			if (file != null) {
 				String fileName = file.getOriginalFilename();
@@ -67,14 +74,16 @@ public class VideoController extends BasicController {
 				if (StringUtils.isNotBlank(fileName)) {
 					// 文件上传的最终保存路径
 					finalVideoPath = UBUNTUPATH + uploadPathDB + "/" + fileName;
+
 					// 设置数据库保存的路径
 					uploadPathDB += ("/" + fileName);
-					coverPathDB = coverPathDB + "/" + FileNamePrefix + ".jpg";
+					coverPathDB = coverPathDB + "/" + RID + ".jpg";
 					File outFile = new File(finalVideoPath);
-
 					if (outFile.getParentFile() != null || outFile.getParentFile().isDirectory()) {
 						// 创建文件夹
 						outFile.getParentFile().mkdirs();
+						new File(uploadVideoPathDB).mkdirs();
+						new File(UBUNTUPATH + coverPathDB).getParentFile().mkdirs();
 					}
 					fileOutputStream = new FileOutputStream(outFile);
 					inputStream = file.getInputStream();
@@ -96,9 +105,8 @@ public class VideoController extends BasicController {
 			Bgm bgm = bgmService.queryBgmById(bgmId);
 			String mp3InputPath = UBUNTUPATH + bgm.getPath();
 //			MergeVideoMp3 tool = new MergeVideoMp3(WINDOWSFFMPEG_EXE);
-			MergeVideoMp3 tool = new MergeVideoMp3(UBUNTUFFMPEG);
+			 MergeVideoMp3 tool = new MergeVideoMp3(UBUNTUFFMPEG);
 			String videoInputPath = finalVideoPath;
-			String videoOutputName = UUID.randomUUID().toString() + ".mp4";
 			uploadPathDB = "/" + userId + "/video/" + videoOutputName;
 			finalVideoPath = UBUNTUPATH + uploadPathDB;
 			tool.convertor(mp3InputPath, videoInputPath, videoSeconds, finalVideoPath, false);
@@ -108,7 +116,7 @@ public class VideoController extends BasicController {
 		System.out.println("finalVideoPath:" + finalVideoPath);
 		// 对视频进行截取
 //		FetchVideoCover videoInfo = new FetchVideoCover(WINDOWSFFMPEG_EXE);
-		FetchVideoCover videoInfo = new FetchVideoCover(UBUNTUFFMPEG);
+		 FetchVideoCover videoInfo = new FetchVideoCover(UBUNTUFFMPEG);
 		videoInfo.getCover(finalVideoPath, UBUNTUPATH + coverPathDB);
 
 		// 保存视频信息到数据库
@@ -177,4 +185,31 @@ public class VideoController extends BasicController {
 		videoSerivce.updateVideo(videoId, uploadPathDB);
 		return R.ok();
 	}
+
+	/**
+	 * 分页和搜索查询视频列表 isSaveRecord: 1-需要保存 2-不需要保存，或者为空的时候
+	 * 
+	 * @param video
+	 * @param page
+	 * @param isSaveRecord
+	 * @param pageSize
+	 * @return
+	 * @throws Exception
+	 */
+	@PostMapping(value = "/showAll")
+	public R showAll(@RequestBody Videos video, Integer page, Integer isSaveRecord, Integer pageSize) throws Exception {
+		if (page == null)
+			page = 1;
+		if (pageSize == null)
+			pageSize = PAGE_SIZE;
+		PagedResult<VideosVO> result = videoSerivce.getAllVideos(video, isSaveRecord, page, pageSize);
+		return R.ok(result);
+
+	}
+
+	@PostMapping(value = "/hot")
+	public R showAll() throws Exception {
+		return R.ok(videoSerivce.getHotwords());
+	}
+
 }

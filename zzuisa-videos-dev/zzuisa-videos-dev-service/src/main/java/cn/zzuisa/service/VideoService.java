@@ -1,5 +1,7 @@
 package cn.zzuisa.service;
 
+import java.util.List;
+
 import cn.zzuisa.pojo.Videos;
 import cn.zzuisa.pojo.vo.VideosVO;
 import cn.zzuisa.utils.PagedResult;
@@ -31,5 +33,10 @@ public interface VideoService {
 	 * @param pageSize
 	 * @return
 	 */
-	public PagedResult<VideosVO> getAllVideos (Integer page,Integer pageSize);
+	public PagedResult<VideosVO> getAllVideos (Videos video,Integer isSaveRecord,Integer page,Integer pageSize);
+	/**
+	 * 获取热搜词列表
+	 * @return
+	 */
+	public List<String> getHotwords();
 }
